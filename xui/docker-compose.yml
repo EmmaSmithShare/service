@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  app:
+    image: bigbugcc/3x-ui
+    networks:
+      - dokploy-network
+    ports:
+      - 2053
+    restart: always
+    volumes:
+      - "$PWD/db/:/etc/x-ui"
+      - "$PWD/cert/:/root/cert"
+    entrypoints:
+      - XRAY_VMESS_AEAD_FORCED=false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.xui.entrypoints=websecure"
+      - "traefik.http.routers.xui.tls.certResolver=letsencrypt"
+      - "traefik.http.routers.xui.rule=Host(`xui.828384.xyz`)"
+      - "traefik.http.services.xui.loadbalancer.server.port=2053"
+
+networks:
+  dokploy-network:
+    external: true

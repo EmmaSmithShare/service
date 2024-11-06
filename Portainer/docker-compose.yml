@@ -7,6 +7,9 @@ services:
             - dokploy-network
         ports:
             - 9000
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+            - "/docker/portainer:/data"
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.docker.entrypoints=web"

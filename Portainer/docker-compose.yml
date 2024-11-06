@@ -8,12 +8,16 @@ services:
         ports:
             - 9000
             - 9443
+        restart: always
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
             - "/docker/portainer:/data"
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.docker.entrypoints=web"
+            - "traefik.http.routers.docker.entrypoints=websecure"
+            - "traefik.http.routers.docker.tls.certResolver=letsencrypt"
+            - "traefik.http.routers.docker.rule=Host(`docker.828384.xyz`)"
+            - "traefik.http.services.docker.loadbalancer.server.port=9000"
 
 networks:
     dokploy-network:

@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  hui:
+    image: jonssonyan/h-ui
+    networks:
+      - host
+    restart: always
+    volumes:
+      - "/docker/hui/bin:/h-ui/bin"
+      - "/docker/hui/data:/h-ui/data"
+      - "/docker/hui/export:/h-ui/export"
+      - "/docker/hui/logs:/h-ui/logs"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - TZ=Asia/Shanghai

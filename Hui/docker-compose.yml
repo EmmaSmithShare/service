@@ -2,8 +2,7 @@ version: '3.9'
 services:
   hui:
     image: jonssonyan/h-ui
-    networks:
-      - host
+    network_mode: host
     restart: always
     volumes:
       - "/docker/hui/bin:/h-ui/bin"

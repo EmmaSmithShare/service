@@ -2,7 +2,8 @@ version: '3.9'
 services:
   hui:
     image: jonssonyan/h-ui
-    network_mode: host
+    networks:
+      - dokploy-network
     restart: always
     volumes:
       - "/docker/hui/bin:/h-ui/bin"
@@ -19,3 +20,7 @@ services:
       - NET_ADMIN
     environment:
       - TZ=Asia/Shanghai
+
+networks:
+    dokploy-network:
+        external: true

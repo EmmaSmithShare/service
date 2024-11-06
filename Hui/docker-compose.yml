@@ -9,6 +9,12 @@ services:
       - "/docker/hui/data:/h-ui/data"
       - "/docker/hui/export:/h-ui/export"
       - "/docker/hui/logs:/h-ui/logs"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hui.entrypoints=websecure"
+      - "traefik.http.routers.hui.tls.certResolver=letsencrypt"
+      - "traefik.http.routers.hui.rule=Host(`hui.828384.xyz`)"
+      - "traefik.http.services.hui.loadbalancer.server.port=9000"
     cap_add:
       - NET_ADMIN
     environment:

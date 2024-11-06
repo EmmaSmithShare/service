@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+    app:
+        image: 6053537/portainer-ce
+        networks:
+            - dokploy-network
+        ports:
+            - 9000
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.docker.entrypoints=web"
+
+networks:
+    dokploy-network:
+        external: true

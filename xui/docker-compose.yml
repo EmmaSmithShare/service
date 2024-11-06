@@ -7,6 +7,7 @@ services:
       - dokploy-network
     ports:
       - 2053
+      - 12000
     restart: always
     volumes:
       - "/docker/xui/db/:/etc/x-ui"
